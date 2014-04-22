@@ -22,4 +22,9 @@ public class Lobby {
         // todo
         throw new RuntimeException();
     }
+
+    public boolean isGameOver() {
+        // todo
+        throw new RuntimeException();
+    }
 }
