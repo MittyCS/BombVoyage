@@ -1,11 +1,11 @@
-var backPath = "assets/back.jpg";
-var playerPath = "assets/player.png"
-var pegPath = "assets/player.png"
-var wallPath = "assets/player.png"
-var balloonPath = "assets/player.png"
-var powerupPath = "assets/player.png"
+var backPath = "../assets/back.jpg";
+var playerPath = "../assets/player.png"
+var pegPath = "../assets/player.png"
+var wallPath = "../assets/player.png"
+var balloonPath = "../assets/player.png"
+var powerupPath = "../assets/player.png"
 
-var renderStage = function (var input) {
+var renderStage = function (input) {
 	var stage = new PIXI.Stage(0x000000);
 	var renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight);
 	document.body.appendChild(renderer.view);
@@ -16,20 +16,23 @@ var renderStage = function (var input) {
 
 	var back = new PIXI.Sprite(texture);
 
-	for (int i = 0; i < 12; i++) {
-		for (int j = 0; j < 12; j++) {
-			if (input[i][j].sprite == null) {
-				switch(instanceof input[i][j])
-					case Player:
-						input[i][j].sprite = new PIXI.Sprite(playerPath);
-					case Peg:
-						input[i][j].sprite = new PIXI.Sprite(pegPath);
-					case Wall:
-						input[i][j].sprite = new PIXI.Sprite(wallPath);
-					case Balloon:
-						input[i][j].sprite = new PIXI.Sprite(balloonPath);
-					case Powerup:			
-						input[i][j].sprite = new PIXI.Sprite(powerupPath);
+	stage.addChild(back);
+	back.width = window.innerWidth;
+	back.height = window.innerHeight;
+
+	for (var i = 0; i < 12; i++) {
+		for (var j = 0; j < 12; j++) {
+			if (input[i][j].sprite == null) {	
+				if (input[i][j] instanceof Player):
+					input[i][j].sprite = new PIXI.Sprite(playerPath);
+				else if (input[i][j] instanceof Peg):
+					input[i][j].sprite = new PIXI.Sprite(pegPath);
+				else if (input[i][j] instanceof Wall):
+					input[i][j].sprite = new PIXI.Sprite(wallPath);
+				else if (input[i][j] instanceof Balloon):
+					input[i][j].sprite = new PIXI.Sprite(balloonPath);
+				else if (input[i][j] instanceof Powerup):			
+					input[i][j].sprite = new PIXI.Sprite(powerupPath);
 			}
 			input[i][j].width = window.innerWidth/12;
 			input[i][j].height= window.innerHeight/12;
@@ -39,11 +42,6 @@ var renderStage = function (var input) {
 		}
 	}
 
-	back.width = window.innerWidth;
-	back.height = window.innerHeight;
-
-	
-
 	function animate() {
 
 	    requestAnimFrame(animate);
@@ -52,3 +50,4 @@ var renderStage = function (var input) {
 
 }
 
+renderStage(var penis)
