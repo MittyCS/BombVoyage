@@ -21,7 +21,8 @@ public class Main {
 
         ServletContextHandler servlets = new ServletContextHandler();
 
-        // todo : add servlets here.
+        servlets.addServlet(CreateGameServlet.class, "/create");
+        servlets.addServlet(ListGamesServlet.class, "/list");
 
         HandlerList handlers = new HandlerList();
 
