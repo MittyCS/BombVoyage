@@ -31,20 +31,22 @@ var renderStage = function (var input) {
 					case Powerup:			
 						input[i][j].sprite = new PIXI.Sprite(powerupPath);
 			}
+			input[i][j].width = window.innerWidth/12;
+			input[i][j].height= window.innerHeight/12;
+			input[i][j].x = i * window.innerWidth/12;
+			input[i][j].y = j * window.innerHeight/12;
+			stage.addChild(input[i][j].sprite);
 		}
 	}
 
 	back.width = window.innerWidth;
 	back.height = window.innerHeight;
 
-	stage.addChild(back);
+	
 
 	function animate() {
 
-	    requestAnimFrame( animate );
-
-			    
-
+	    requestAnimFrame(animate);
 	    renderer.render(stage);
 	}
 
