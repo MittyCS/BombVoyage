@@ -20,10 +20,7 @@ public class Lobby {
     ObjectMapper mapper = new ObjectMapper();
 
     public boolean onConnect(Connection conn) {
-        if (connections.size() < 4) {
-            return false;
-        }
-        return true;
+        return connections.size() >= 4;
     }
 
     // see game spec
