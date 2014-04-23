@@ -17,7 +17,7 @@ import java.util.Set;
 public class Lobby {
 
     private Set<Connection> connections = new HashSet<>();
-    ObjectMapper mapper = new ObjectMapper();
+    private ObjectMapper mapper = new ObjectMapper();
 
     public boolean onConnect(Connection conn) {
         return connections.size() >= 4;
