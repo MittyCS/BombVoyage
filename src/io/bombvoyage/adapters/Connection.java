@@ -6,5 +6,7 @@ package io.bombvoyage.adapters;
  */
 
 public interface Connection {
+
     public void sendText(String msg);
+
 }
