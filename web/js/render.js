@@ -49,5 +49,3 @@ var renderStage = function (input) {
 	}
 
 }
-
-renderStage(var penis)
