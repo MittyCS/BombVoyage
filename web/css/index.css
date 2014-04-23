@@ -1,0 +1,75 @@
+body {
+	padding: 0%;
+	margin: 0;
+	font-family: "Oswald";
+	color: #000;
+	background-color: #FFF;
+}
+
+#title {
+	margin: 0%;
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	padding-left: 2%;
+	
+	font-size: 1250%;
+}
+
+#menu {
+	text-align: right;
+	position: fixed;
+	width: 50%;
+	right: 0%;
+	bottom: 20%;
+	font-size: 400%;
+}
+
+.menu-li {
+	list-style-type: none;
+	padding-right: 5%;
+	background: linear-gradient(to right, #000 50%, #FFF 50%);
+    background-size: 200% 100%;
+    background-position:right;
+    transition: all 200ms linear;
+	-webkit-transition: all 200ms linear;
+}
+
+.menu-li:hover {
+	color: #FFF;
+	background-position:left;
+}
+
+#about {
+	font-size: 200%;
+	position: fixed;
+	left: 0%;
+	bottom: 0%;
+	width: 50%;
+
+}
+
+.about-li {
+	padding-left: 2%;
+	padding-right: 2%;
+	list-style-type: none;
+	display: inline;
+	background: linear-gradient(to top, #FFF 50%, #000 50%);
+    background-size: 100% 200%;
+    background-position:bottom;
+    transition: all 200ms linear;
+	-webkit-transition: all 200ms linear;
+}
+
+.about-li:hover {
+	color: #FFF;
+	background-position:top;
+}
+
+#bomb-img {
+	position: fixed;
+	top: 20%;
+	left: 15%;
+	width: 40%;
+
+}
