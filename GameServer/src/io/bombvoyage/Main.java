@@ -3,7 +3,6 @@ package io.bombvoyage;
 import io.bombvoyage.adapters.jetty.JettyAdapter;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
