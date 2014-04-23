@@ -13,12 +13,17 @@ public class Game {
         throw new RuntimeException();
     }
 
-    public void onMessage(Connection conn) {
+    public void onMessage(Connection conn, String text) {
         // todo
         throw new RuntimeException();
     }
 
     public void onDisconnect(Connection conn) {
+        // todo
+        throw new RuntimeException();
+    }
+
+    public boolean isOver() {
         // todo
         throw new RuntimeException();
     }

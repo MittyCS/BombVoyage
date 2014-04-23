@@ -7,5 +7,6 @@ package io.bombvoyage.adapters;
 
 public interface Adapter {
     public void start();
+    public void join();
     public void stop();
 }
