@@ -12,7 +12,7 @@ body {
 	top: 0%;
 	left: 0%;
 	padding-left: 2%;
-	
+	color: #F00;
 	font-size: 1250%;
 }
 
@@ -36,8 +36,15 @@ body {
 }
 
 .menu-li:hover {
-	color: #FFF;
 	background-position:left;
+}
+
+#make-link:hover {
+	color: #FF4D4D;
+} #join-link:hover {
+	color: #52CC52;
+} #view-link:hover {
+	color: #3399FF;
 }
 
 #about {
@@ -66,10 +73,26 @@ body {
 	background-position:top;
 }
 
+#about-link:hover {
+	color: #FF4D4D;
+} #contact-link:hover {
+	color: #52CC52;
+} #blog-link:hover {
+	color: #3399FF;
+}
+
 #bomb-img {
 	position: fixed;
 	top: 20%;
-	left: 15%;
+	left: 10%;
 	width: 40%;
+	transition: all 200ms linear;
+	-webkit-transition: all 200ms linear;
 
+} #bomb-img:hover {
+	-ms-transform: scale(1.1 ,1.1); 
+	-webkit-transform: scale(1.1, 1.1);
+	transform: scale(1.1, 1.1);
+	transition: all 200ms linear;
+	-webkit-transition: all 200ms linear;
 }
