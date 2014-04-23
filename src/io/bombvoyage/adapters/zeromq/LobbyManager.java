@@ -1,0 +1,100 @@
+package io.bombvoyage.adapters.zeromq;
+
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.bombvoyage.game.Lobby;
+import org.zeromq.ZMQ;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ * @author arshsab
+ * @since 04 2014
+ */
+
+public class LobbyManager {
+    private static final ObjectMapper mapper = new ObjectMapper();
+
+    private final Thread t;
+    private final Map<String, Lobby> lobbies = new ConcurrentHashMap<>();
+
+    public LobbyManager(final int PORT) {
+        ZMQ.Context ctx = ZMQ.context(1);
+        ZMQ.Socket sock = ctx.socket(ZMQ.REP);
+
+        sock.bind("tcp://*:" + PORT);
+
+        this.t = new Thread(() -> {
+            while (!Thread.interrupted()) {
+                try {
+                    String str = new String(sock.recv(0), ZMQ.CHARSET);
+                    JsonNode node = mapper.readTree(str);
+
+                    String id;
+
+                    switch (node.path("action").textValue()) {
+                        case "CREATE_GAME":
+                            id = node.path("id").textValue();
+
+                            lobbies.put(id, new Lobby());
+                            break;
+                        case "DESTROY_GAME":
+                            id = node.path("id").textValue();
+
+                            lobbies.remove(id);
+                            break;
+                        case "LIST_GAMES":
+                            OutputStream out = new OutputStream() {
+                                final StringBuilder sb = new StringBuilder();
+
+                                @Override
+                                public void write(int b) throws IOException {
+                                    sb.append((char) b);
+                                }
+
+                                @Override
+                                public String toString() {
+                                    return sb.toString();
+                                }
+                            };
+
+                            JsonGenerator jGen = new JsonFactory().createGenerator(out);
+
+                            jGen.writeStartArray();
+                            for (Map.Entry<String, Lobby> entry : lobbies.entrySet()) {
+                                jGen.writeStartObject();
+
+                                jGen.writeStringField("id", entry.getKey());
+                                // todo : add player numbers
+
+                                jGen.writeEndObject();
+                            }
+
+                            break;
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+    }
+
+    public Lobby retrieve(String id) {
+        // todo
+
+        throw new RuntimeException();
+    }
+
+    public void start() {
+        t.start();
+    }
+
+    public void join() throws InterruptedException {
+        t.join();
+    }
+}
