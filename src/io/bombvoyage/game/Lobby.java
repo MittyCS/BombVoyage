@@ -48,7 +48,7 @@ public class Lobby {
                 if (votes.size() > NUMBER_OF_PLAYERS / 2) {
                     this.game = new Game();
                     started = true;
-                    game.onStart((Connection[]) connections.toArray());
+                    game.onStart(connections.toArray(new Connection[connections.size()]));
                     votes.clear();
                 }
             }
@@ -65,6 +65,12 @@ public class Lobby {
     } 
 
     public void onDisconnect(Connection conn) {
+        checkForGameOver();
+
+        if (started) {
+            game.onDisconnect(conn);
+        }
+
         connections.remove(conn);
         votes.remove(conn);
     }
