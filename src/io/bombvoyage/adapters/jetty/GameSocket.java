@@ -39,7 +39,9 @@ public class GameSocket {
     public void onTextMessage(Session session, String text) {
         if (inLobby()) {
             try {
-                lobby.onMessage(text, connection);
+                synchronized (lobby) {
+                    lobby.onMessage(text, connection);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -51,8 +53,11 @@ public class GameSocket {
                     String lobbyId = node.path("lobby").textValue();
 
                     Lobby lobby = manager.retrieve(lobbyId);
-                    if (lobby != null && lobby.onConnect(connection)) {
-                        this.lobby = lobby;
+                    if (lobby != null) {
+                        synchronized (lobby) {
+                            if (lobby.onConnect(connection))
+                                this.lobby = lobby;
+                        }
                     }
                 }
             } catch (IOException e) {
@@ -64,7 +69,9 @@ public class GameSocket {
     @OnWebSocketClose
     public void onClose(Session session, int closeCode, String closeReason) {
         if (inLobby()) {
-            lobby.onDisconnect(connection);
+            synchronized (lobby) {
+                lobby.onDisconnect(connection);
+            }
         }
     }
 
