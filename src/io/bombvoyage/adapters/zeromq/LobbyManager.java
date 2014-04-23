@@ -42,11 +42,13 @@ public class LobbyManager {
                             id = node.path("id").textValue();
 
                             lobbies.put(id, new Lobby());
+                            sock.send("");
                             break;
                         case "DESTROY_GAME":
                             id = node.path("id").textValue();
 
                             lobbies.remove(id);
+                            sock.send("");
                             break;
                         case "LIST_GAMES":
                             OutputStream out = new OutputStream() {
@@ -70,10 +72,12 @@ public class LobbyManager {
                                 jGen.writeStartObject();
 
                                 jGen.writeStringField("id", entry.getKey());
-                                // todo : add player numbers
+                                jGen.writeNumberField("players", entry.getValue().getNumberOfPlayers());
 
                                 jGen.writeEndObject();
                             }
+
+                            sock.send(out.toString());
 
                             break;
                     }
@@ -81,13 +85,14 @@ public class LobbyManager {
                     throw new RuntimeException(e);
                 }
             }
+
+            sock.close();
+            ctx.term();
         });
     }
 
     public Lobby retrieve(String id) {
-        // todo
-
-        throw new RuntimeException();
+        return lobbies.get(id);
     }
 
     public void start() {
@@ -96,5 +101,9 @@ public class LobbyManager {
 
     public void join() throws InterruptedException {
         t.join();
+    }
+
+    public void stop() {
+        t.interrupt();
     }
 }
