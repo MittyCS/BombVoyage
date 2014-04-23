@@ -56,7 +56,8 @@ public class LobbyManager {
 
                                 @Override
                                 public void write(int b) throws IOException {
-                                    sb.append((char) b);
+                                    if (b != -1)
+                                        sb.append((char) b);
                                 }
 
                                 @Override
@@ -76,6 +77,9 @@ public class LobbyManager {
 
                                 jGen.writeEndObject();
                             }
+
+                            jGen.flush();
+                            jGen.close();
 
                             sock.send(out.toString());
 
