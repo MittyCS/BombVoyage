@@ -59,13 +59,19 @@ var renderStage = function (input) {
             input[i][j].sprite.height= h/12;
             input[i][j].sprite.x = i * w/12;
             input[i][j].sprite.y = j * h/12;
+
+
             stage.addChild(input[i][j].sprite);
         }
     }
 
     function animate() {
 
-        for 
+        for (var i = 0; i < 12; i++) {
+            for (var j = 0; j < 12; j++) {
+                input[i][j].sprite.rotation += 0.1;
+            }
+        }
 
         requestAnimFrame(animate);
         renderer.render(stage);
