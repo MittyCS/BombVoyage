@@ -38,7 +38,11 @@ public class GameSocket {
     @OnWebSocketMessage
     public void onTextMessage(Session session, String text) {
         if (inLobby()) {
-            lobby.onMessage(text, connection);
+            try {
+                lobby.onMessage(text, connection);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             try {
                 JsonNode node = mapper.readTree(text);
