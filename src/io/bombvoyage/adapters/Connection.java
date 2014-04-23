@@ -7,5 +7,7 @@ package io.bombvoyage.adapters;
 
 @FunctionalInterface
 public interface Connection {
+
     public void sendText(String msg);
+
 }
