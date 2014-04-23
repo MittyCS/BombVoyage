@@ -51,7 +51,7 @@ public class GameSocket {
                     String lobbyId = node.path("lobby").textValue();
 
                     Lobby lobby = manager.retrieve(lobbyId);
-                    if (lobby.onConnect(connection)) {
+                    if (lobby != null && lobby.onConnect(connection)) {
                         this.lobby = lobby;
                     }
                 }
