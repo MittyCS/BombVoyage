@@ -6,6 +6,7 @@ var Player = (function() {
         this.balloons	= baloons;
         this.life 		= life;
         this.state 		= state;
+        this.sprite 	= null;
 
     }
 
@@ -19,6 +20,7 @@ var Player = (function() {
 var Peg = (function() {
     function Peg(pos) {
         this.pos = pos;
+        this.sprite 	= null;
     }
 
     /* 
@@ -32,6 +34,7 @@ var Peg = (function() {
 var Wall = (function() {
     function Wall(pos) {
         this.pos = pos;   
+        this.sprite 	= null;
     }
     /* 
 	Other code goes here.
@@ -42,6 +45,7 @@ var Wall = (function() {
 var Balloon = (function() {
     function Balloon(pos) {
         this.pos = pos;   
+        this.sprite 	= null;
     }
     /* 
 	Other code goes here.
@@ -53,6 +57,7 @@ var Powerup = (function() {
     function Balloon(pos, type) {
         this.pos = pos;
         this.type = type;
+        this.sprite 	= null;
     }
     /* 
 	Other code goes here.
