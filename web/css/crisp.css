@@ -1,0 +1,50 @@
+html, body {
+    overflow-x: hidden;
+    height: 100%;
+    background-color: #001303;
+}
+
+@font-face {
+    font-family: crackman;
+    src: url(../assets/crackman.ttf);
+}
+
+.awesome-font {
+    font-family: crackman, serif;
+}
+
+.awesome-button {
+    width: 100%;
+    font-size: 150%;
+    font-family: crackman, serif;
+}
+
+.awesome-button:hover {
+    opacity: 0.5;
+}
+
+a {
+    color: #828282;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.navbar-inverse {
+    background-color: #001303;
+    background-image: none;
+    background-repeat: no-repeat;
+}
+
+.content-container {
+    height: 77vh;
+    overflow-y: auto;
+}
+
+.center-div {
+    margin: 27vh auto;
+    width: 100%;
+}
