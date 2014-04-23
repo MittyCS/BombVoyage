@@ -55,4 +55,4 @@ var renderStage = function (input) {
         renderer.render(stage);
     }
 
-}
+};
