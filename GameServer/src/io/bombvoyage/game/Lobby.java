@@ -56,11 +56,7 @@ public class Lobby {
             if (started)
                 game.onMessage(conn, node.path("payload").textValue());
 
-            for (Connection c : connections) {
-                if (c != conn) {
-                    c.sendText(text);
-                }
-            }
+            connections.stream().filter(c -> c != conn).forEach(c -> c.sendText(text));
         }
     } 
 
