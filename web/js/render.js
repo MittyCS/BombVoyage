@@ -136,7 +136,7 @@ function animate() {
         } else {
             input[pY][pX].sprite.x += 4;
             inMvX = true;
-            dirX == 0;
+            dirX = 0;
         }
     } else if (input[pY][pX].sprite.x > xT) {
         if (inMvX == true && dirX == 0) {
@@ -145,7 +145,7 @@ function animate() {
         } else {
             input[pY][pX].sprite.x -= 4;
             inMvX = true;
-            dirX == 1;
+            dirX = 1;
         }
     }
 
@@ -156,7 +156,7 @@ function animate() {
         } else {
             input[pY][pX].sprite.y += 4;
             inMvY = true;
-            dirY == 0;
+            dirY = 0;
         }
     } else if (input[pY][pX].sprite.y > yT) {
         if (inMvY == true && dirY == 0) {
@@ -165,7 +165,7 @@ function animate() {
         } else {
             input[pY][pX].sprite.y -= 4;
             inMvY = true;
-            dirY == 1;
+            dirY = 1;
         }
     }
 
