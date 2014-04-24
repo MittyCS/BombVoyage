@@ -7,6 +7,9 @@ var powerupPath = "assets/pwrup.png";
 var w;
 var h;
 
+var pX = 0;
+var pY = 0;
+
 if (window.innerWidth <= window.innerHeight) {
     w = window.innerWidth;
     h = w;
@@ -22,25 +25,19 @@ function randomIntFromInterval(min,max)
 
 console.log("ETC");
 
+var xT;
+var yT;
+
 var input = new Array(12);
 
 for (var i = 0; i < input.length; i++) {
     input[i] = new Array(12);
     for (var j = 0; j < input[i].length; j++) {
-        var x = randomIntFromInterval(0 , 20);
-        if (x == 0) {
-            input[i][j] = new Player(5);
-        } else if (x == 1 || x > 6) {
-            input[i][j] = new Peg(5);
-        } else if (x == 2 || x > 4 && x < 7) {
-            input[i][j] = new Wall(5);
-        } else if (x == 3) {
-            input[i][j] = new Powerup(5);
-        } else if (x == 4) {
-            input[i][j] = new Balloon(5);
-        }
+        input[i][j] = new Empty();
     }
 }
+
+input[0][0] = new Player(5);
 
 var stage = new PIXI.Stage(0x000000);
 var renderer = PIXI.autoDetectRenderer(w, h);
@@ -58,6 +55,36 @@ back.x = 0;
 back.y = 0;
 
 stage.addChild(back);
+
+document.addEventListener('keydown', function(event) {
+     switch (event.keyCode) {
+    case 37: // Left
+        xT =  input[pY][pX].sprite.x - w/12; 
+        break;
+    case 38: // Up
+        yT =  input[pY][pX].sprite.y - h/12;
+        break;
+    case 39: // Right
+        xT =  input[pY][pX].sprite.x + w/12; 
+        break;
+    case 40: // Down
+        yT =  input[pY][pX].sprite.y + h/12;
+        break;
+  }
+  if (yT < 0) {
+        yT = 0;
+    } else if (yT > (h - h/12)) {
+        yT = h - h/12;
+    }
+
+    if (xT < 0) {
+        xT = 0;
+    } else if (xT > (w - w/12)) {
+        xT= w - w/12;
+    }
+});
+
+
 
 for (var i = 0; i < 12; i++) {
     for (var j = 0; j < 12; j++) {
@@ -91,47 +118,67 @@ for (var i = 0; i < 12; i++) {
     }
 }
 
+var inMvX = false;
+var dirX = 0;
+
+var inMvY = false;
+var dirY = 0;
+
 function animate() {
 
-    for (var i = 0; i < 12; i++) {
-        for (var j = 0; j < 12; j++) {
-            input[i][j].sprite.rotation += 0.1;
+    if (input[pY][pX].sprite.x < xT) {
+        if (inMvX == true && dirX == 1) {
+            inMvX = false;
+            input[pY][pX].sprite.x = xT;
+        } else {
+            input[pY][pX].sprite.x += 4;
+            inMvX = true;
+            dirX == 0;
+        }
+    } else if (input[pY][pX].sprite.x > xT) {
+        if (inMvX == true && dirX == 0) {
+            inMvX = false;
+            input[pY][pX].sprite.x = xT;
+        } else {
+            input[pY][pX].sprite.x -= 4;
+            inMvX = true;
+            dirX == 1;
         }
     }
+
+    if (input[pY][pX].sprite.y < yT) {
+        if (inMvY == true && dirY == 1) {
+            inMvY = false;
+            input[pY][pX].sprite.y = yT;
+        } else {
+            input[pY][pX].sprite.y += 4;
+            inMvY = true;
+            dirY == 0;
+        }
+    } else if (input[pY][pX].sprite.y > yT) {
+        if (inMvY == true && dirY == 0) {
+            inMvY = false;
+            input[pY][pX].sprite.y = yT;
+        } else {
+            input[pY][pX].sprite.y -= 4;
+            inMvY = true;
+            dirY == 1;
+        }
+    }
+
+    if (input[pY][pX].sprite.y < 0) {
+        input[pY][pX].sprite.y = 0;
+    } else if (input[pY][pX].sprite.y > (h - h/12)) {
+        input[pY][pX].sprite.y = h - h/12;
+    }
+
+    if (input[pY][pX].sprite.x < 0) {
+        input[pY][pX].sprite.x = 0;
+    } else if (input[pY][pX].sprite.x > (w - w/12)) {
+        input[pY][pX].sprite.x= w - w/12;
+    }
+
 
     requestAnimFrame(animate);
     renderer.render(stage);
 }
-
-// var stage = new PIXI.Stage(0x66FF99);
- 
-//     // create a renderer instance.
-//     var renderer = PIXI.autoDetectRenderer(innerWidth, innerHeight);
- 
-//     // add the renderer view element to the DOM
-//     document.body.appendChild(renderer.view);
- 
-//     requestAnimFrame( animate );
- 
-//     // create a texture from an image path
-//     var texture = PIXI.Texture.fromImage("assets/back.png");
-//     // create a new Sprite using the texture
-//     var bunny = new PIXI.Sprite(texture);
- 
-//     // center the sprites anchor point
-//     bunny.anchor.x = 0.5;
-//     bunny.anchor.y = 0.5;
- 
-//     // move the sprite t the center of the screen
-//     bunny.position.x = 200;
-//     bunny.position.y = 150;
- 
-//     stage.addChild(bunny);
- 
-//     function animate() {
- 
-//         requestAnimFrame( animate );
- 
-//         // render the stage   
-//         renderer.render(stage);
-//     }

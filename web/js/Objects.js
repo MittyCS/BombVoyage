@@ -60,3 +60,14 @@ var Powerup = (function() {
     return Powerup; 
 })();
 
+var Empty = (function() {
+    function Empty(type) {
+    }
+    /* 
+    Other code goes here.
+    */
+    return Empty; 
+})();
+
+
+
