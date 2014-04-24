@@ -7,6 +7,9 @@ var powerupPath = "assets/pwrup.png";
 var w;
 var h;
 
+var objH;
+var objW;
+
 var pX = 0;
 var pY = 0;
 
