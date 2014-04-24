@@ -28,23 +28,40 @@ body {
 .menu-li {
 	list-style-type: none;
 	padding-right: 5%;
-	background: linear-gradient(to right, #000 50%, #FFF 50%);
-    background-size: 200% 100%;
-    background-position:right;
-    transition: all 200ms linear;
-	-webkit-transition: all 200ms linear;
 }
 
 .menu-li:hover {
 	background-position:left;
 }
 
+#make-link {
+	background: linear-gradient(to right, #FF4D4D 50%, #FFF 50%);
+    background-size: 200% 100%;
+    background-position:right;
+    transition: all 200ms linear;
+	-webkit-transition: all 200ms linear;
+
+} #join-link {
+	background: linear-gradient(to right, #52CC52 50%, #FFF 50%);
+    background-size: 200% 100%;
+    background-position:right;
+    transition: all 200ms linear;
+	-webkit-transition: all 200ms linear;
+
+} #view-link {
+	background: linear-gradient(to right, #3399FF 50%, #FFF 50%);
+    background-size: 200% 100%;
+    background-position:right;
+    transition: all 200ms linear;
+	-webkit-transition: all 200ms linear;
+}
+
 #make-link:hover {
-	color: #FF4D4D;
+	background-position:left;
 } #join-link:hover {
-	color: #52CC52;
+	background-position:left;
 } #view-link:hover {
-	color: #3399FF;
+	background-position:left;
 }
 
 #about {
@@ -61,24 +78,40 @@ body {
 	padding-right: 2%;
 	list-style-type: none;
 	display: inline;
-	background: linear-gradient(to top, #FFF 50%, #000 50%);
+}
+
+.about-li:hover {
+	background-position:top;
+}
+
+#about-link {
+	background: linear-gradient(to top, #FFF 50%, #FF4D4D 50%);
+    background-size: 100% 200%;
+    background-position:bottom;
+    transition: all 200ms linear;
+	-webkit-transition: all 200ms linear;
+} #contact-link {
+	background: linear-gradient(to top, #FFF 50%, #52CC52 50%);
+    background-size: 100% 200%;
+    background-position:bottom;
+    transition: all 200ms linear;
+	-webkit-transition: all 200ms linear;
+} #blog-link {
+	background: linear-gradient(to top, #FFF 50%, #3399FF 50%);
     background-size: 100% 200%;
     background-position:bottom;
     transition: all 200ms linear;
 	-webkit-transition: all 200ms linear;
 }
 
-.about-li:hover {
-	color: #FFF;
-	background-position:top;
-}
+	
 
 #about-link:hover {
-	color: #FF4D4D;
+	background-position:top;
 } #contact-link:hover {
-	color: #52CC52;
+	background-position:top;
 } #blog-link:hover {
-	color: #3399FF;
+	background-position:top;
 }
 
 #bomb-img {
