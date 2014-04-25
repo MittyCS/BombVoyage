@@ -84,4 +84,8 @@ public class Lobby {
             started = false;
         }
     }
+
+    public boolean hasStarted() {
+        return started;
+    }
 }

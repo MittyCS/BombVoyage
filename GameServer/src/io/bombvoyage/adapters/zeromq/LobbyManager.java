@@ -74,6 +74,7 @@ public class LobbyManager {
 
                                 jGen.writeStringField("id", entry.getKey());
                                 jGen.writeNumberField("players", entry.getValue().getNumberOfPlayers());
+                                jGen.writeBooleanField("inProg", entry.getValue().hasStarted());
 
                                 jGen.writeEndObject();
                             }
