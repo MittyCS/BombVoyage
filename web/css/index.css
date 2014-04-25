@@ -1,5 +1,5 @@
 body {
-	padding: 0%;
+	padding: 0;
 	margin: 0;
 	font-family: "Oswald";
 	color: #000;
@@ -7,10 +7,10 @@ body {
 }
 
 #title {
-	margin: 0%;
+	margin: 0;
 	position: fixed;
-	top: 0%;
-	left: 0%;
+	top: 0;
+	left: 0;
 	padding-left: 2%;
 	color: #F00;
 	font-size: 1250%;
@@ -128,4 +128,8 @@ body {
 	transform: scale(1.1, 1.1);
 	transition: all 200ms linear;
 	-webkit-transition: all 200ms linear;
+}
+
+.about-li, .menu-li {
+    cursor: pointer;
 }
